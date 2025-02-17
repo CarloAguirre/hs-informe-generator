@@ -44,29 +44,60 @@ app.post("/", async (req, res) => {
     fechaInicioFormatted,
     fechaFinFormatted,
     establecimientos,
-    categorias 
+    categorias,
+    company,
+    categoriasSorted,
+    electricidadComprada,
+    allFiltersValue,
+    tipoEnfoque,
+    combustibleConsumido,
+    kilometrosRecorridos,
+    residuos,
+    viajeDeNegocios,
+    papelComprado
   } = req.body;
 
   if (!totalEmisiones) {
     return res.status(400).json({ error: "El campo totalEmisiones es requerido" });
   }
 
-  console.log(categorias)
-
+  var totalEmpleados = 0;
+  var unidadFuncionalCantidad = 0;
+  var unidadFuncionalNombre = [];
+  establecimientos.forEach(e=> {
+    totalEmpleados += e.employees
+    unidadFuncionalCantidad += e.unidadFuncionalCantidad
+    if(typeof(e.unidadFuncionalNombre) !== "null")
+      unidadFuncionalNombre.push(e.unidadFuncionalNombre)
+  })
+  const unidadFuncionalNombres = unidadFuncionalNombre.join(', ')
+  var emisionesPorEmpleado = (((totalEmisiones/totalEmpleados)/1000).toFixed(2))
+  var unidadFuncionalCantidadTotal = (((totalEmisiones/unidadFuncionalCantidad)/1000).toFixed(2))
+  var categoriasSortedPorcent = 0;
   const establecimientosFormatted = establecimientos
   .map((e) => `• ${e.address.name}`)
   .join('\n');
 
-  
+  const categoriasSortedFormatted = categoriasSorted
+  .map((c, i) => {
+    while (i < 3) {
+      categoriasSortedPorcent += parseFloat(((Number(c.value) / totalEmisiones) / 10).toFixed(2));
+      return `  ${i + 1}. ${c.key}: ${(Number(c.value) / 1000).toFixed(2)} tCO2e (${((Number(c.value) / totalEmisiones) / 10).toFixed(2)}%)\n\n`;
+    }
+  })
+  .join('');
 
+
+  console.log(electricidadComprada)
   try {
+    let añoActual = new Date().getFullYear();
     const content = fs.readFileSync(INPUT_DOCX);
     const zip = new PizZip(content);
     const doc = new Docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
     const alcanceMap = {
-      alcanceUno: "Scope 1",
-      alcanceDos: "Scope 2",
-      alcanceTres: "Scope 3",
+      alcanceUno: "Alcance 1",
+      alcanceDos: "Alcance 2",
+      alcanceTres: "Alcance 3",
     };
     const tablaDatos = categorias.map((categoria) => ({
       key: categoria.key,
@@ -74,6 +105,11 @@ app.post("/", async (req, res) => {
       value: Number(categoria.value/1000).toFixed(2),
       porcentaje: `${Number(categoria.porcentaje).toFixed(2)}%`,
     }));
+
+    const allFiltersArray = Object.entries(allFiltersValue).map(([key, value]) => ({
+      categoria: key,
+      incluida: value ? "✔" : "✘"
+  }));
     doc.render({
       totalEmisiones,
       porcentajeScopeUno,
@@ -98,6 +134,21 @@ app.post("/", async (req, res) => {
       fechaFinFormatted,
       establecimientosFormatted,
       tabla: tablaDatos,
+      emisionesPorEmpleado,
+      companyName: company?.name,
+      categoriasSortedFormatted,
+      electricidadComprada,
+      categoriasSortedPorcent,
+      allFiltersArray,
+      tipoEnfoque,
+      combustibleConsumido,
+      kilometrosRecorridos,
+      residuos,
+      viajeDeNegocios,
+      papelComprado,
+      añoActual,
+      unidadFuncionalNombres,
+      unidadFuncionalCantidadTotal
     });
 
     // Guardar el Word modificado
