@@ -16,8 +16,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// const API_KEY = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYjQzMTUwMzAyYjA2ZTRjMWExNzBhMzg2OGJiMmQ2NzQyZjBlOTZlN2YzOTc2YjdmY2I1ZDEwZWJiMTRmMWI0MzhkN2Y3YzU5Y2RkYjE3NzkiLCJpYXQiOjE3MzM0MzI3MTUuODA1OTYzLCJuYmYiOjE3MzM0MzI3MTUuODA1OTY0LCJleHAiOjQ4ODkxMDYzMTUuODAyMywic3ViIjoiNzAzODEyMTgiLCJzY29wZXMiOlsidXNlci5yZWFkIiwidXNlci53cml0ZSIsInRhc2sucmVhZCIsInRhc2sud3JpdGUiLCJ3ZWJob29rLnJlYWQiLCJ3ZWJob29rLndyaXRlIiwicHJlc2V0LnJlYWQiLCJwcmVzZXQud3JpdGUiXX0.GYrPGxYxHAtgXnjZRDu6fsb2bVq9hcFlMgs_vi4YfY8L8Lf18Ljdmdy3q5n7VeVdsIz51wwSL5I1Dl3gg9lGDVoYiiWe9US99DHRx2WV-JZPBxgut0Lf6899OBuLqzJ0EsrA0Jc-n_kSdiMG_Pw_M8gHx2pydoKdgdJ5Uqvw_zWZhDEdvUlobAMBOyYJw8_fBIo2b7c_xXHH_JXC_-dxESePEq1VTLiUkrE6iQu0FHqIAXWf-8DPc1GyTsWltAbPeFTgeAVVLI2Ql4zmwYQ-H-IOSAkzjnO_pdIpxHld94yGjzWh2bDEc9zZtR1kYlwAPjEBM_tG5zVTmpfXU1ftiUjzma10nEn3ZsfA1yZDKjcLmPgJp-Yygj1uFEGEqb8_5DAyA0PLa2WZrm-_Y_TYD7tehhqkQzo-uGiy04XhnO0Gn9pGSbwr6HJn4dLnXm9gsYabn2aLbg_WxtZtSppif_f-nF2pl4rflVsslIQ00y10D0PH4dQe9_lHM6JuKUGSFZAgihfzeUHH5aSpdoQcHNVFB_MuJT0BZpSN8nwAy9UGb9VfBxKCUnoJK10KeKYs0Ce_DcBdWdAFGbzuvnv_7OboSj2ARyYoGmNZtqAjVIO1kF4EhaWdV2mojnClSnzScooWmWB3jKc9Qw5dSwtebxvXSb5WkaQw735RuHkNysA"; 
-const API_KEY = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZDY5YWI3NTU5MTZmOTVlMzI5YjA1MzA3NjZjZTIyZWNhMTA2NDBjNTg4ZTE1ZWZlMDFlMWUyMjRhZmMxNWIzYjg0OTQ5MDllNTg0NDUwZjIiLCJpYXQiOjE3MzM2Njg1ODIuNDg5NTI5LCJuYmYiOjE3MzM2Njg1ODIuNDg5NTMxLCJleHAiOjQ4ODkzNDIxODIuNDY4NjgsInN1YiI6IjcwMzM2NjI5Iiwic2NvcGVzIjpbInVzZXIucmVhZCIsInVzZXIud3JpdGUiLCJ0YXNrLnJlYWQiLCJ0YXNrLndyaXRlIiwid2ViaG9vay5yZWFkIiwid2ViaG9vay53cml0ZSIsInByZXNldC5yZWFkIiwicHJlc2V0LndyaXRlIl19.ZXcbEp5JRioGaH7QNYtl2X-I-Gvi_VCO_hiq9eyi_LOnC2vwcHqVMJ_iF4s_a1Z-jtPbdbAYriQL4n46G02Mi7YlSzNOjX0-aYdZmwAwuf06q5QWS0lkJnrbyjHiHkQOQAupRh2RUBsqOQbqmMhKVGOdB15CkfHelnQAYM3Z0z4s8n9TAM5SiAMx58xvPIOg0ZLevkksaolNVKdQD-3aROPzHB4He0m9v1-gIr3IGeGpgX4ho7tOP8h2o8jO0bn_9htz4_sWZJRCXJDHhIsXvGIN2Fg8VhktNF7E5reljjjuZ-qzOl0WEeQqwTzE8MInJf_Owk-nKWIh-L_IumZLQrC_4aSLKTAkOGCjkwwvjOrfIo1PhZlNTws7y8uI9L7JeT7n4IO_Cdz49KHesRsdrMLXKLXkSueRkisCdq40tMvOgHdwqtvT0N8vppdQu1Ks4XB7bLmOscm7tW3VIe3Dxr5M0WJCZ749AM6FDGsTHKNHoQ0BPDl7i6e8mwlI7IVGb1CzWljOxNQkCvy_5NLxI7-Y7_JbVXjR8wjxS07M8A1GCc7ZRcWj64mwj0XTdmPyqJF8bfWoeHiDAPcXF74HoOBHlr3iSKGJo52zEQwXyQQ9kUtWWzFY4b7BcDGe46dGBo_BMQDEOII_WWRN9VyVNTM-SQdeEqzeI4VTfN5Z2HM"; 
+ 
 const INPUT_DOCX = path.join(__dirname, "informe.docx");
 
 app.post("/", async (req, res) => {
@@ -54,8 +53,13 @@ app.post("/", async (req, res) => {
     kilometrosRecorridos,
     residuos,
     viajeDeNegocios,
-    papelComprado
+    papelComprado,
+    alcanceUnoDetail
   } = req.body;
+
+  function formatoNumero(numero) {
+    return Number(numero).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }  
 
   if (!totalEmisiones) {
     return res.status(400).json({ error: "El campo totalEmisiones es requerido" });
@@ -67,12 +71,14 @@ app.post("/", async (req, res) => {
   establecimientos.forEach(e=> {
     totalEmpleados += e.employees
     unidadFuncionalCantidad += e.unidadFuncionalCantidad
-    if(typeof(e.unidadFuncionalNombre) !== "null")
+    if(e.unidadFuncionalNombre !== null && e.unidadFuncionalNombre !== undefined){
       unidadFuncionalNombre.push(e.unidadFuncionalNombre)
+
+    }
   })
   const unidadFuncionalNombres = unidadFuncionalNombre.join(', ')
-  var emisionesPorEmpleado = (((totalEmisiones/totalEmpleados)/1000).toFixed(2))
-  var unidadFuncionalCantidadTotal = (((totalEmisiones/unidadFuncionalCantidad)/1000).toFixed(2))
+  var emisionesPorEmpleado = (((totalEmisiones/totalEmpleados)).toFixed(2))
+  var unidadFuncionalCantidadTotal = (((totalEmisiones/unidadFuncionalCantidad)).toFixed(2))
   var categoriasSortedPorcent = 0;
   const establecimientosFormatted = establecimientos
   .map((e) => `• ${e.address.name}`)
@@ -81,12 +87,12 @@ app.post("/", async (req, res) => {
   const categoriasSortedFormatted = categoriasSorted
   .map((c, i) => {
     while (i < 3) {
-      categoriasSortedPorcent += parseFloat(((Number(c.value) / totalEmisiones) / 10).toFixed(2));
-      return `  ${i + 1}. ${c.key}: ${(Number(c.value) / 1000).toFixed(2)} tCO2e (${((Number(c.value) / totalEmisiones) / 10).toFixed(2)}%)\n\n`;
+      categoriasSortedPorcent += Number((Number(c.value) / totalEmisiones) / 10);
+      return `  ${i + 1}. ${c.key}: ${formatoNumero((Number(c.value) / 1000).toFixed(2))} tCO2e (${((Number(c.value) / totalEmisiones) / 10).toFixed(2)}%)\n\n`;
     }
   })
   .join('');
-
+  categoriasSortedPorcent = (Math.round(categoriasSortedPorcent * 100) / 100).toFixed(2);
 
   console.log(electricidadComprada)
   try {
@@ -99,10 +105,16 @@ app.post("/", async (req, res) => {
       alcanceDos: "Alcance 2",
       alcanceTres: "Alcance 3",
     };
+    const transformarKey = (key) => {
+      return key
+        .replace(/([a-z])([A-Z])/g, '$1 $2') 
+        .replace(/\b\w/g, (char) => char.toUpperCase()); 
+    };
+    
     const tablaDatos = categorias.map((categoria) => ({
-      key: categoria.key,
+      key: transformarKey(categoria.key),
       alcance: alcanceMap[categoria.alcance.trim()] || categoria.alcance.trim(),
-      value: Number(categoria.value/1000).toFixed(2),
+      value: formatoNumero(Number(categoria.value/1000).toFixed(2)),
       porcentaje: `${Number(categoria.porcentaje).toFixed(2)}%`,
     }));
 
@@ -110,23 +122,35 @@ app.post("/", async (req, res) => {
       categoria: key,
       incluida: value ? "✔" : "✘"
   }));
+
+  const alcanceUno = [
+    {
+      CO2: formatoNumero(alcanceUnoDetail.CO2),
+      CH4: formatoNumero(alcanceUnoDetail.CH4),
+      HFC: formatoNumero(alcanceUnoDetail.HFC),
+      N2O: formatoNumero(alcanceUnoDetail.N2O),
+      NF3: formatoNumero(alcanceUnoDetail.NF3),
+      PFC: formatoNumero(alcanceUnoDetail.PFC),
+      SF6: formatoNumero(alcanceUnoDetail.SF6),
+    }
+  ];
     doc.render({
-      totalEmisiones,
-      porcentajeScopeUno,
-      porcentajeScopeDos,
-      porcentajeScopeTres,
-      totalScopeUno,
-      totalScopeDos,
-      totalScopeTres,
-      principalFuenteUno,
-      principalFuenteDos,
-      principalFuenteTres,
-      principalFuenteUnoTotal,
-      principalFuenteDosTotal,
-      principalFuenteTresTotal,
-      principalFuenteUnoPorcentaje,
-      principalFuenteDosPorcentaje,
-      principalFuenteTresPorcentaje,
+      totalEmisiones: formatoNumero(totalEmisiones),
+      porcentajeScopeUno: formatoNumero(porcentajeScopeUno),
+      porcentajeScopeDos: formatoNumero(porcentajeScopeDos),
+      porcentajeScopeTres: formatoNumero(porcentajeScopeTres),
+      totalScopeUno: formatoNumero(totalScopeUno),
+      totalScopeDos: formatoNumero(totalScopeDos),
+      totalScopeTres: formatoNumero(totalScopeTres),
+      principalFuenteUno: formatoNumero(principalFuenteUno),
+      principalFuenteDos: formatoNumero(principalFuenteDos),
+      principalFuenteTres: formatoNumero(principalFuenteTres),
+      principalFuenteUnoTotal: formatoNumero(principalFuenteUnoTotal),
+      principalFuenteDosTotal: formatoNumero(principalFuenteDosTotal),
+      principalFuenteTresTotal: formatoNumero(principalFuenteTresTotal),
+      principalFuenteUnoPorcentaje: formatoNumero(principalFuenteUnoPorcentaje),
+      principalFuenteDosPorcentaje: formatoNumero(principalFuenteDosPorcentaje),
+      principalFuenteTresPorcentaje: formatoNumero(principalFuenteTresPorcentaje),
       fechaHoy,
       fechaInicioString,
       fechaFinString,
@@ -134,21 +158,22 @@ app.post("/", async (req, res) => {
       fechaFinFormatted,
       establecimientosFormatted,
       tabla: tablaDatos,
-      emisionesPorEmpleado,
+      emisionesPorEmpleado: formatoNumero(emisionesPorEmpleado),
       companyName: company?.name,
       categoriasSortedFormatted,
-      electricidadComprada,
-      categoriasSortedPorcent,
+      electricidadComprada: formatoNumero(electricidadComprada),
+      categoriasSortedPorcent: formatoNumero(categoriasSortedPorcent),
       allFiltersArray,
       tipoEnfoque,
-      combustibleConsumido,
-      kilometrosRecorridos,
-      residuos,
-      viajeDeNegocios,
-      papelComprado,
+      combustibleConsumido: formatoNumero(combustibleConsumido),
+      kilometrosRecorridos: formatoNumero(kilometrosRecorridos),
+      residuos: formatoNumero(residuos),
+      viajeDeNegocios: formatoNumero(viajeDeNegocios),
+      papelComprado: formatoNumero(papelComprado),
       añoActual,
       unidadFuncionalNombres,
-      unidadFuncionalCantidadTotal
+      unidadFuncionalCantidadTotal: formatoNumero(unidadFuncionalCantidadTotal),
+      alcanceUno
     });
 
     // Guardar el Word modificado
@@ -182,7 +207,7 @@ app.post("/", async (req, res) => {
       payload,
       {
         headers: {
-          Authorization: `Bearer ${API_KEY}`,
+          Authorization: `Bearer ${process.env.API_KEY}`,
           "Content-Type": "application/json",
         },
       }
