@@ -82,8 +82,10 @@ app.post("/", async (req, res) => {
   var unidadFuncionalCantidadTotal = (((totalEmisiones/unidadFuncionalCantidad)).toFixed(2))
   var categoriasSortedPorcent = 0;
   const establecimientosFormatted = establecimientos
-  .map((e) => `• ${e.address?.name || 'Sin dirección especificada'}`)
+  .filter(e => e.address?.name) // Filtra los elementos donde address.name es null o undefined
+  .map(e => `• ${e.address.name}`)
   .join('\n');
+
 
   const categoriasSortedFormatted = categoriasSorted
   .map((c, i) => {
