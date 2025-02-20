@@ -82,7 +82,7 @@ app.post("/", async (req, res) => {
   var unidadFuncionalCantidadTotal = (((totalEmisiones/unidadFuncionalCantidad)).toFixed(2))
   var categoriasSortedPorcent = 0;
   const establecimientosFormatted = establecimientos
-  .map((e) => `• ${e.address.name}`)
+  .map((e) => `• ${e.address?.name || 'Sin dirección especificada'}`)
   .join('\n');
 
   const categoriasSortedFormatted = categoriasSorted
